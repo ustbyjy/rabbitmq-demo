@@ -1,7 +1,6 @@
-package spring;
+package com.yjy.old.spring;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -13,7 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class SpringMain {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws Exception {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring/rabbitmq-context.xml");
         RabbitTemplate template = context.getBean(RabbitTemplate.class);
 

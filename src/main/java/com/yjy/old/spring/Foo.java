@@ -1,4 +1,4 @@
-package spring;
+package com.yjy.old.spring;
 
 /**
  * Created with IntelliJ IDEA.

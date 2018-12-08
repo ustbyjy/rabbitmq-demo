@@ -1,4 +1,4 @@
-package util;
+package com.yjy.old.util;
 
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;

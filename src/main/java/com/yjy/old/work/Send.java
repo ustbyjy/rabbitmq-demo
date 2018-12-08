@@ -1,8 +1,8 @@
-package work;
+package com.yjy.old.work;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
-import util.ConnectionUtil;
+import com.yjy.old.util.ConnectionUtil;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;

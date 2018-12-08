@@ -1,7 +1,7 @@
-package topic;
+package com.yjy.old.routing;
 
 import com.rabbitmq.client.*;
-import util.ConnectionUtil;
+import com.yjy.old.util.ConnectionUtil;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -13,9 +13,9 @@ import java.util.concurrent.TimeoutException;
  * Date: 2017/8/28
  * Time: 16:40
  */
-public class Recv2 {
-    private final static String QUEUE_NAME = "test_queue_topic_2";
-    private final static String EXCHANGE_NAME = "test_exchange_topic";
+public class Recv {
+    private final static String QUEUE_NAME = "test_queue_direct_1";
+    private final static String EXCHANGE_NAME = "test_exchange_direct";
 
     public static void main(String[] args) throws IOException, TimeoutException, InterruptedException {
         Connection connection = ConnectionUtil.getConnection();
@@ -23,7 +23,8 @@ public class Recv2 {
         final Channel channel = connection.createChannel();
 
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-        channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, "item.#");
+        channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, "update");
+        channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, "delete");
 
         channel.basicQos(1);
 

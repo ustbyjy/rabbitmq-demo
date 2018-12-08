@@ -33,6 +33,6 @@
         <rabbit:listener ref="foo" method="listen" queue-names="myQueue" />
     </rabbit:listener-container>
 
-    <bean id="foo" class="spring.Foo" />
+    <bean id="foo" class="com.yjy.old.spring.Foo" />
 
 </beans>

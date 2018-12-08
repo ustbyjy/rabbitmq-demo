@@ -1,9 +1,9 @@
-package ps;
+package com.yjy.old.simple;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.QueueingConsumer;
-import util.ConnectionUtil;
+import com.yjy.old.util.ConnectionUtil;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -16,8 +16,7 @@ import java.util.concurrent.TimeoutException;
  * Time: 16:40
  */
 public class Recv {
-    private final static String QUEUE_NAME = "test_queue_fanout_1";
-    private final static String EXCHANGE_NAME = "test_exchange_fanout";
+    private final static String QUEUE_NAME = "test_queue";
 
     public static void main(String[] args) throws IOException, TimeoutException, InterruptedException {
         Connection connection = ConnectionUtil.getConnection();
@@ -25,18 +24,14 @@ public class Recv {
         Channel channel = connection.createChannel();
 
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-        channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, "");
-        channel.basicQos(1);
 
         QueueingConsumer consumer = new QueueingConsumer(channel);
-        channel.basicConsume(QUEUE_NAME, false, consumer);
+        channel.basicConsume(QUEUE_NAME, true, consumer);
 
         while (true) {
             QueueingConsumer.Delivery delivery = consumer.nextDelivery();
             String message = new String(delivery.getBody());
             System.out.println(" [x] Received '" + message + "'");
-            Thread.sleep(1000);
-            channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
         }
     }
 }
